@@ -61,31 +61,29 @@ A stack principal deste backend é composta por:
 
 ### 1️⃣ Clonar o Repositório
 
-```bash
+
 git clone https://github.com/KayqueLucas/aquibrecho-api.git
 cd aquibrecho-api
-2️⃣ Configurar o Banco de Dados
+
+### 2️⃣ Configurar o Banco de Dados
+```
 Acesse seu cliente PostgreSQL (ex: DBeaver ou psql) e crie um novo banco:
 
-sql
-Copiar código
+
 CREATE DATABASE aquibrecho_db;
 Muito importante: conecte-se ao banco recém-criado e ative a extensão PostGIS:
 
-sql
-Copiar código
-\c aquibrecho_db
+
 CREATE EXTENSION postgis;
 ⚠️ Sem essa extensão, as funcionalidades de mapa não irão funcionar.
+```
 
-3️⃣ Configurar a Aplicação
+### 3️⃣ Configurar a Aplicação
 Navegue até o diretório src/main/resources
 Renomeie o arquivo application.properties.example (ou crie um novo) para application.properties.
 
 Preencha com as suas credenciais do banco de dados:
-
-properties
-Copiar código
+```
 # Configuração do Banco de Dados PostgreSQL
 spring.datasource.url=jdbc:postgresql://localhost:5432/aquibrecho_db
 spring.datasource.username=seu_usuario_postgres
@@ -98,16 +96,17 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 # DIALETO ESPACIAL (Necessário para o PostGIS)
 spring.jpa.properties.hibernate.dialect.spatial=org.hibernate.spatial.dialect.postgis.PostgisDialect
-4️⃣ Executar a Aplicação
+```
+### 4️⃣ Executar a Aplicação
+```
 Abra um terminal na raiz do projeto e execute o comando Maven:
 
-bash
-Copiar código
 ./mvnw spring-boot:run
 A API estará disponível em:
 👉 http://localhost:8080
-
-🗺️ Endpoints da API (MVP)
+````
+### 🗺️ Endpoints da API (MVP)
+```
 Método	Endpoint	Descrição
 POST	/brechos	Cadastra um novo brechó
 GET	/brechos	Lista todos os brechós
@@ -115,14 +114,11 @@ GET	/brechos?estilo=vintage	Filtra brechós por estilo
 GET	/brechos?lat=-22.90&lon=-43.17&raio=5	Filtra brechós por proximidade (raio em km)
 GET	/brechos/{id}	Obtém os detalhes de um brechó específico
 GET	/estilos	Lista todas as tags de estilo disponíveis
-
+```
 👨‍💻 Autor
 Feito por Kayque Lucas
 
 🔗 LinkedIn: https://www.linkedin.com/in/kayque-lucas-dev/
 💻 GitHub: https://github.com/KayqueLucas
-
-yaml
-Copiar código
 
 ---
