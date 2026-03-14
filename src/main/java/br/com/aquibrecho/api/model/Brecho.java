@@ -7,9 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import lombok.Data;
+import org.locationtech.jts.geom.Point;
 import java.util.List;
-import java.awt.*;
 
+
+@Data
 public class Brecho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,6 +10,9 @@ import java.awt.*;
 
 public interface BrechoRepository  extends JpaRepository<Brecho, Long> {
 
-    @Query(value = "SELECT * FROM brecho b WHERE ST_DistanceSphere(b.localizacao, :ponto) < :distanciaMetros", nativeQuery = true)
-    List<Brecho> findByProximidade(@Param("ponto")Point ponto, @Param("distanciaMetros") double distanciaMetros);
+    @Query("SELECT b FROM Brecho b WHERE ST_DistanceSphere(b.localizacao, :pontoReferencia) <= :raioMetros")
+    List<Brecho> findBrechosWithinRadius(
+            @Param("pontoReferencia") Point pontoReferencia,
+            @Param("raioMetros") double raioMetros
+    );
 }
