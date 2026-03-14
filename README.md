@@ -66,7 +66,7 @@ Até o momento, a fundação estrutural e de segurança da API foi estabelecida:
 
 ## 👨‍💻 Autor
 
-**Kayque Lucas**
+**Kayque Lucas Silva Neves**
 
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kayque-lucas-dev/)
