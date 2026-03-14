@@ -1,1 +1,11 @@
 .vscode/
+### Configurações da IDE (IntelliJ) ###
+.idea/
+*.iml
+*.iws
+
+### Compilação do Maven ###
+target/
+
+### Arquivos de Variáveis de Ambiente (SEGURANÇA) ###
+.env
