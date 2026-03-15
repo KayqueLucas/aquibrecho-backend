@@ -2,6 +2,7 @@ package br.com.aquibrecho.api.controller;
 
 import br.com.aquibrecho.api.dto.BrechoRequestDTO;
 import br.com.aquibrecho.api.dto.BrechoResponseDTO;
+import br.com.aquibrecho.api.dto.BrechoSimplesResponseDTO;
 import br.com.aquibrecho.api.service.BrechoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,11 @@ public class BrechoController {
             @RequestParam(defaultValue = "5.0") Double raioKm
     ){
         List<BrechoResponseDTO> response = brechoService.buscarProximos(lat, lng, raioKm);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+    @GetMapping
+    public ResponseEntity<List<BrechoSimplesResponseDTO>> listarTodos(){
+        List<BrechoSimplesResponseDTO> response = brechoService.listarTodosSimples();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

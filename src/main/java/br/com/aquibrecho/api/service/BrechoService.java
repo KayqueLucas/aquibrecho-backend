@@ -11,6 +11,7 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import br.com.aquibrecho.api.dto.BrechoSimplesResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class BrechoService {
     }
 
     @Transactional
-    public BrechoResponseDTO salvar(BrechoRequestDTO dto){
+    public BrechoResponseDTO salvar(@org.checkerframework.checker.nullness.qual.NonNull BrechoRequestDTO dto){
 
         Point localizacao = geometryFactory.createPoint(new Coordinate(dto.longitude(), dto.latitude()));
 
@@ -72,5 +73,23 @@ public class BrechoService {
                 brecho.getLocalizacao().getX(),
                 nomesEstilos
         );
+    }
+    @Transactional(readOnly = true)
+    public List<BrechoSimplesResponseDTO> listarTodosSimples() {
+        // Busca todos os brechós no banco
+        List<Brecho> brechos = brechoRepository.findAll();
+
+        // Converte cada Brecho do banco para o BrechoSimplesResponseDTO
+        return brechos.stream().map(brecho -> {
+            List<String> nomesEstilos = brecho.getEstilos().stream()
+                    .map(Estilo::getNome)
+                    .toList();
+
+            return new BrechoSimplesResponseDTO(
+                    brecho.getNome(),
+                    brecho.getEndereco(),
+                    nomesEstilos
+            );
+        }).collect(Collectors.toList());
     }
 }
